@@ -16,12 +16,27 @@ class ApkBar extends AppBar {
   @override
   // TODO: implement actions
   List<Widget>? get actions => const [
-        Image(image: AssetImage('assets/images/search_dark.png')),
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 0),
-          child: Image(image: AssetImage('assets/images/language.png')),
+          padding: EdgeInsets.symmetric(horizontal: 10),
+          child: Image(
+            image: AssetImage('assets/images/search_dark.png'),
+            width: 20,
+          ),
         ),
-        Image(image: AssetImage('assets/images/hamburger_dark.png')),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 10),
+          child: Image(
+            image: AssetImage('assets/images/language.png'),
+            width: 20,
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20),
+          child: Image(
+            image: AssetImage('assets/images/hamburger_dark.png'),
+            width: 20,
+          ),
+        ),
       ];
 
   @override

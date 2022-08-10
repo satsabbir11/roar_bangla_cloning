@@ -30,36 +30,31 @@ class _TopperScrollState extends State<TopperScroll> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        //height: 50,
-        child: Visibility(
-      visible: isLoaded,
-      replacement: const Center(
-        child: CircularProgressIndicator(),
-      ),
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: posts?.length,
-        itemBuilder: (context, index) {
-          return Column(
-            children: [
-              Container(
-                //width: 100,
-                margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                child: Text(
-                  posts![index].name.toString(),
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                    color: Colors.grey,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-
-              ),
-            ],
-          );
-        },
-      ),
-    ));
+    return
+      isLoaded
+          ? ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: posts?.length,
+              itemBuilder: (context, index) {
+                return Column(
+                  children: [
+                    Container(
+                      //width: 100,
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 10),
+                      child: Text(
+                        posts![index].name.toString(),
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                          color: Colors.grey,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
+                );
+              },
+            )
+          : const CircularProgressIndicator();
   }
 }
