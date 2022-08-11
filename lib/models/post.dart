@@ -6,12 +6,13 @@ String wpPostToJson(List<WpPost> data) => json.encode(List<dynamic>.from(data.ma
 
 class WpPost {
   WpPost({
-    required this.id,
-    required this.date,
-    required this.dateGmt,
-    required this.link,
-    required this.title,
-    required this.yoastHeadJson,
+   required this.id,
+   required this.date,
+   required this.dateGmt,
+   required this.link,
+   required this.title,
+   required this.yoastHeadJson,
+   required this.postMetaFields,
   });
 
   int id;
@@ -20,6 +21,7 @@ class WpPost {
   String link;
   Title title;
   YoastHeadJson yoastHeadJson;
+  PostMetaFields postMetaFields;
 
   factory WpPost.fromJson(Map<String, dynamic> json) => WpPost(
     id: json["id"],
@@ -28,6 +30,7 @@ class WpPost {
     link: json["link"],
     title: Title.fromJson(json["title"]),
     yoastHeadJson: YoastHeadJson.fromJson(json["yoast_head_json"]),
+    postMetaFields: PostMetaFields.fromJson(json["post-meta-fields"]),
   );
 
   Map<String, dynamic> toJson() => {
@@ -37,12 +40,29 @@ class WpPost {
     "link": link,
     "title": title.toJson(),
     "yoast_head_json": yoastHeadJson.toJson(),
+    "post-meta-fields": postMetaFields.toJson(),
+  };
+}
+
+class PostMetaFields {
+  PostMetaFields({
+   required this.views,
+  });
+
+  List<String> views;
+
+  factory PostMetaFields.fromJson(Map<String, dynamic> json) => PostMetaFields(
+    views: List<String>.from(json["views"].map((x) => x)),
+  );
+
+  Map<String, dynamic> toJson() => {
+    "views": List<dynamic>.from(views.map((x) => x)),
   };
 }
 
 class Title {
   Title({
-    required this.rendered,
+   required this.rendered,
   });
 
   String rendered;
@@ -58,8 +78,8 @@ class Title {
 
 class YoastHeadJson {
   YoastHeadJson({
-    required this.ogImage,
-    required this.author,
+   required this.ogImage,
+   required this.author,
   });
 
   List<OgImage> ogImage;
@@ -78,10 +98,10 @@ class YoastHeadJson {
 
 class OgImage {
   OgImage({
-    required this.width,
-    required this.height,
-    required this.url,
-    required this.type,
+   required this.width,
+   required this.height,
+   required this.url,
+   required this.type,
   });
 
   int width;
